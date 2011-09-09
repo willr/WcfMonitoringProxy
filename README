@@ -1,0 +1,39 @@
+
+WCF Monitoring Proxy
+
+To use:
+ - Reference the WcfMonitoring project
+ - Derive from WcfProxyMonitor<T> just as you would ClientBase<T>
+ - Connect as you want
+ 
+This proxy will cache the state of all the proxy objects that derive from it.  As it hooks 
+	to the events from the ChannelFactory. 
+	
+The values cached are:
+
+	public ProxyState ProxyState { get; set; }
+
+	public CommunicationState CommState { get; set; }
+
+	public int InstanceId { get; set; }
+
+	public Uri ConnectionVia { get; set; }
+
+	public EndpointAddress Endpoint { get; set; }
+
+	public DateTime LastUpdate { get; set; }
+
+	public string ProxyType { get; set; }
+
+	public Guid Guid { get; set; }
+	
+To Display the cache call:
+
+	class StateHandler
+	public static Dictionary<int, ConnectionState> GetConnectionStates()
+	
+	from the same process from where you are connecting.
+	
+WcfConsole.Program.cs shows and example of displaying the cached values from the console program. 
+	
+	Thanks
